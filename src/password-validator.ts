@@ -4,7 +4,7 @@ type PasswordValidationError =
   | "MissingDigit";
 
 type PasswordValidationResult = {
-  valid: boolean;
+  isValid: boolean;
   errors: PasswordValidationError[];
 };
 
@@ -39,7 +39,7 @@ export class PasswordValidator {
     }
 
     return {
-      valid: errors.length === 0,
+      isValid: errors.length === 0,
       errors,
     };
   }
