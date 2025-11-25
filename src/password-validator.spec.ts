@@ -59,4 +59,14 @@ describe("Password validator", () => {
     expect(result.errors).toContain("InvalidLength");
     expect(result.errors).toContain("MissingDigit");
   });
+
+  it("returns correct errors for passwords like 'mylengthypassword' that is invalid in length and does not contain both uppercase and digit", () => {
+    const result = PasswordValidator.validatePassword("mylengthypassword");
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(3);
+    expect(result.errors).toContain("InvalidLength");
+    expect(result.errors).toContain("MissingDigit");
+    expect(result.errors).toContain("MissingUppercase");
+  });
 });
