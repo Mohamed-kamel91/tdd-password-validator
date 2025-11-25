@@ -27,9 +27,18 @@ describe("Password validator", () => {
 
   it("returns 'MissingDigit' error for passwords like 'Khalil' that does not contain a digit", () => {
     const result = PasswordValidator.validatePassword("Khalil");
-    
+
     expect(result.valid).toBe(false);
     expect(result.errors).toHaveLength(1);
+    expect(result.errors).toContain("MissingDigit");
+  });
+
+  it("returns correct errors for passwords like 'khalil' that does not contain uppercase and digit", () => {
+    const result = PasswordValidator.validatePassword("khalil");
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(2);
+    expect(result.errors).toContain("MissingUppercase");
     expect(result.errors).toContain("MissingDigit");
   });
 });
