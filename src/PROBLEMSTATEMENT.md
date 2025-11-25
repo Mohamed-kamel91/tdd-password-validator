@@ -40,7 +40,7 @@ Write a stateless class for validating passwords. Passwords must meet the follow
 ### **Return Value Requirements**
 
 Return an object containing:
-- a boolean `result`
+- a boolean `valid`
 - an `errors` key that — when provided with an invalid password — contains an error **type** for all errors in occurrence.
 
 There can be **multiple errors at the same time**.
@@ -48,7 +48,7 @@ There can be **multiple errors at the same time**.
 **Success**
 /*
 {
-  result: true,
+  valid: true,
   errors: []
 }
 */
@@ -56,7 +56,7 @@ There can be **multiple errors at the same time**.
 **Failure**
 /*
 {
-  result: false,
+  valid: false,
   errors: [
     'InvalidLength',
     'MissingUppercase',
