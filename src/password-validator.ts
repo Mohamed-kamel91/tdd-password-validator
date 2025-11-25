@@ -4,6 +4,10 @@ export class PasswordValidator {
       return { valid: false, errors: ["InvalidLength"] };
     }
 
+    if (!/[A-Z]/.test(password)) {
+      return { valid: false, errors: ["MissingUppercase"] };
+    }
+
     return { valid: true, errors: [] };
   }
 }

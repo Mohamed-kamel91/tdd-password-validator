@@ -17,9 +17,13 @@ describe("Password validator", () => {
     expect(result.errors).toContain("InvalidLength");
   });
 
-  it.todo(
-    "returns 'MissingUppercase' error for passwords like 'khalil' that doesn't contain uppcase"
-  );
+  it("returns 'MissingUppercase' error for passwords like 'maxwell1_c' that doesn't contain uppcase", () => {
+    const result = PasswordValidator.validatePassword("maxwell1_c");
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(1);
+    expect(result.errors).toContain("MissingUppercase");
+  });
 
   it.todo(
     "returns 'MissingDigit' error for passwords like 'maxwell1_c' that does not contain a digit"
