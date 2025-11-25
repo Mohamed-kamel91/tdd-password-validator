@@ -9,9 +9,13 @@ describe("Password validator", () => {
     expect(result.errors).toContain("InvalidLength");
   });
 
-  it.todo(
-    "returns 'InvalidLength' error for passwords like 'thePhysical1234567' that are more than 15 characters"
-  );
+  it("returns 'InvalidLength' error for passwords like 'thePhysical1234567' that are more than 15 characters", () => {
+    const result = PasswordValidator.validatePassword("thePhysical1234567");
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(1);
+    expect(result.errors).toContain("InvalidLength");
+  });
 
   it.todo(
     "returns 'MissingUppercase' error for passwords like 'khalil' that doesn't contain uppcase"
