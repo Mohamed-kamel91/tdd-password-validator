@@ -25,7 +25,11 @@ describe("Password validator", () => {
     expect(result.errors).toContain("MissingUppercase");
   });
 
-  it.todo(
-    "returns 'MissingDigit' error for passwords like 'maxwell1_c' that does not contain a digit"
-  );
+  it("returns 'MissingDigit' error for passwords like 'Khalil' that does not contain a digit", () => {
+    const result = PasswordValidator.validatePassword("Khalil");
+    
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(1);
+    expect(result.errors).toContain("MissingDigit");
+  });
 });

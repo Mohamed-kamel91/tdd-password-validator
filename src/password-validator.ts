@@ -8,6 +8,10 @@ export class PasswordValidator {
       return { valid: false, errors: ["MissingUppercase"] };
     }
 
+    if (!/[0-9]/.test(password)) { 
+      return { valid: false, errors: ["MissingDigit"] };
+    }
+
     return { valid: true, errors: [] };
   }
 }
