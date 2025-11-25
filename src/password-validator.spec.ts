@@ -69,4 +69,11 @@ describe("Password validator", () => {
     expect(result.errors).toContain("MissingDigit");
     expect(result.errors).toContain("MissingUppercase");
   });
+
+  it("returns success result for passwords like 'maxWell1_c' that is valid in length, contains both uppercase and a digit", () => {
+    const result = PasswordValidator.validatePassword("maxWell1_c");
+
+    expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
+  });
 });
