@@ -8,47 +8,39 @@ type PasswordValidationResult = {
   errors: PasswordValidationError[];
 };
 
+const isLengthBetween = (min: number, max: number, text: string) => {
+  return text.length >= min && text.length <= max;
+};
+
+const hasUppercase = (password: string) => {
+  const uppercaseRegex = /[A-Z]/;
+  return uppercaseRegex.test(password);
+};
+
+const hasDigit = (password: string) => {
+  const digitRegex = /\d/;
+  return digitRegex.test(password);
+};
+
 export class PasswordValidator {
-  static validatePassword(password: string) {
-    const result: PasswordValidationResult = {
-      valid: true,
-      errors: [],
+  static validatePassword(password: string): PasswordValidationResult {
+    const errors: PasswordValidationResult["errors"] = [];
+
+    if (!isLengthBetween(5, 15, password)) {
+      errors.push("InvalidLength");
+    }
+
+    if (!hasUppercase(password)) {
+      errors.push("MissingUppercase");
+    }
+
+    if (!hasDigit(password)) {
+      errors.push("MissingDigit");
+    }
+
+    return {
+      valid: errors.length === 0,
+      errors,
     };
-
-    if (!this.isValidLength(password)) {
-      result.errors.push("InvalidLength");
-    }
-
-    if (!this.containsUppercase(password)) {
-      result.errors.push("MissingUppercase");
-    }
-
-    if (!this.containsDigit(password)) {
-      result.errors.push("MissingDigit");
-    }
-
-    if (this.hasErrors(result.errors)) {
-      result.valid = false;
-    }
-
-    return result;
-  }
-
-  private static isValidLength(password: string) {
-    return password.length >= 5 && password.length <= 15;
-  }
-
-  private static hasErrors(errors: PasswordValidationResult["errors"]) {
-    return errors.length > 0;
-  }
-
-  private static containsUppercase(password: string) {
-    const uppercaseRegex = /[A-Z]/;
-    return uppercaseRegex.test(password);
-  }
-
-  private static containsDigit(password: string) {
-    const digitRegex = /\d/;
-    return digitRegex.test(password);
   }
 }
