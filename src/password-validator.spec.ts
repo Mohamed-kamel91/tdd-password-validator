@@ -41,4 +41,13 @@ describe("Password validator", () => {
     expect(result.errors).toContain("MissingUppercase");
     expect(result.errors).toContain("MissingDigit");
   });
+
+  it("returns correct errors for passwords like 'kha7' that is less than 5 character and missing uppercase", () => {
+    const result = PasswordValidator.validatePassword("kha7");
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(2);
+    expect(result.errors).toContain("InvalidLength");
+    expect(result.errors).toContain("MissingUppercase");
+  });
 });
