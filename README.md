@@ -94,12 +94,12 @@ npm run test:dev
 
 ```ts
 {
-  result: boolean,
+  valid: boolean,
   errors: string[]
 }
 ```
 
-- `result`: `true` if the password passes all rules
+- `valid`: `true` if the password passes all rules
 - `errors`: A list of all validation errors (empty if valid)
 
 ## Usage
@@ -107,20 +107,20 @@ npm run test:dev
 ### Basic Usage
 
 ```ts
-import { validatePassword } from "./src/passwordValidator";
+import { PasswordValidator } from "./src/passwordValidator";
 
-console.log(validatePassword("Abc12"));
+console.log(PasswordValidator.validatePassword("Abc12"));
 /*
 {
-  result: true,
+  valid: true,
   errors: []
 }
 */
 
-console.log(validatePassword("abc"));
+console.log(PasswordValidator.validatePassword("abc"));
 /*
 {
-  result: false,
+  valid: false,
   errors: [
     'InvalidLength',
     'MissingUppercase',
